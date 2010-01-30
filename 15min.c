@@ -9,18 +9,14 @@ void draw_box( int x, int y,
 	       int w, int h,
 	       SDL_Surface* screen)
 {
-  SDL_Rect box;
-  box.x = x;
-  box.y = y;
-  box.w = w;
-  box.h = h;
+  SDL_Rect box = { x, y, w, h};
   SDL_FillRect(screen, &box, SDL_MapRGB( screen->format, 0x66, 0x00, 0xcc));
 }
 
 void init_sdl( SDL_Surface** screen)
 {
   printf("Initialize SDL...");   
-  if( (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) == -1)) { 
+  if( ( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_AUDIO) == -1)) { 
     printf("Failed to initialize SDL: %s.\n", SDL_GetError());
     exit(-1);
   }
