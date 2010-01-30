@@ -1,6 +1,10 @@
 #include <SDL.h>
 #include <stdio.h>
 
+void clear_screen( SDL_Surface* screen)
+{
+  SDL_FillRect(screen, NULL, 0);
+}
 void draw_box( int x, int y,
 	       int w, int h,
 	       SDL_Surface* screen)
@@ -11,7 +15,6 @@ void draw_box( int x, int y,
   box.w = w;
   box.h = h;
   SDL_FillRect(screen, &box, SDL_MapRGB( screen->format, 0x66, 0x00, 0xcc));
-  SDL_UpdateRect(screen, 0, 0, 0, 0);
 }
 
 void init_sdl( SDL_Surface** screen)
@@ -44,12 +47,25 @@ int main( int argc, char** argv)
   SDL_Surface* screen;
   SDL_Event event;
   int done = 0;
-  int i;
+  int mode = 0;
+  int x = 0;
 
   init_sdl( &screen);
-  draw_box( 0, 0, 320, 240, screen);
 
   while( !done){
+    clear_screen( screen);
+
+    if(mode){
+      x--;
+      if(x < 20) mode = 0;
+    }else{
+      x++;
+      if(x > 620) mode = 1;
+    }
+
+    draw_box( x, 0, 32, 240, screen);
+    SDL_UpdateRect(screen, 0, 0, 0, 0);
+
     while( SDL_PollEvent(&event)){
       switch( event.type){
       case SDL_KEYDOWN:
