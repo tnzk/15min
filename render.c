@@ -22,6 +22,10 @@ void draw_box( int x, int y,
   SDL_GL_SwapBuffers();
 }
 
+void sampledraw( Game15min* game)
+{
+  draw_box( game->x, 0, 32, 240, game->screen);
+}
 
 void init_sdl( SDL_Surface** screen)
 {
@@ -42,8 +46,10 @@ void init_sdl( SDL_Surface** screen)
   }
   fputs("done.\n", stdout);
 
+  fputs("Initialize OpenGL...", stdout);
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
   glOrtho(0.0, SCREEN_WIDTH, SCREEN_HEIGHT, 0.0, -1.0, 1.0);
+  fputs("done.\n", stdout);
 
 }
 

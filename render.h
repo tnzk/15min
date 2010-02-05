@@ -1,8 +1,10 @@
+#include "15min.h"
+
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
 void clear_screen( SDL_Surface* screen);
-
+void sampledraw(Game15min* game);
 void draw_box( int x, int y,
 	       int w, int h,
 	       SDL_Surface* screen);
