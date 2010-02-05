@@ -1,3 +1,5 @@
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
 
 void clear_screen( SDL_Surface* screen);
 

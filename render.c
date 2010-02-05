@@ -1,40 +1,55 @@
 #include <stdio.h>
 #include <SDL.h>
+#include <SDL_opengl.h>
+#include "render.h"
 
 void clear_screen( SDL_Surface* screen)
 {
-  SDL_FillRect(screen, NULL, 0);
+  glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void draw_box( int x, int y,
 	       int w, int h,
 	       SDL_Surface* screen)
 {
-  SDL_Rect box = { x, y, w, h};
-  SDL_FillRect(screen, &box, SDL_MapRGB( screen->format, 0x66, 0x00, 0xcc));
+  glBegin(GL_QUADS);
+    glColor3f(1.0, 1.0f, 1.0);
+    glVertex3f( x,     y,     0);
+    glVertex3f( x + w, y,     0);
+    glVertex3f( x + w, y + h, 0);
+    glVertex3f( x,     y + h, 0);
+  glEnd();
+  SDL_GL_SwapBuffers();
 }
+
 
 void init_sdl( SDL_Surface** screen)
 {
-  printf("Initialize SDL...");   
+  fputs("Initialize SDL...", stdout);
   if( ( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_AUDIO) == -1)) { 
     printf("Failed to initialize SDL: %s.\n", SDL_GetError());
     exit(-1);
   }
-  printf("done.\n");
+  fputs("done.\n", stdout);
 
-  printf("Initialize a video mode...");   
-  *screen = SDL_SetVideoMode( 640, 480, 32, SDL_SWSURFACE | SDL_DOUBLEBUF);
+  SDL_WM_SetCaption("15min", NULL);
+
+  fputs("Initialize a video mode...", stdout);
+  *screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, 32, SDL_SWSURFACE | SDL_DOUBLEBUF | SDL_OPENGL);
   if( (*screen) == NULL){
     SDL_Quit();
     exit(-1);
   }
-  printf("done.\n");
+  fputs("done.\n", stdout);
+
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+  glOrtho(0.0, SCREEN_WIDTH, SCREEN_HEIGHT, 0.0, -1.0, 1.0);
+
 }
 
 void quit_sdl()
 {
-  printf("Quit sdl...");
+  fputs("Quit sdl...", stdout);
   SDL_Quit();
-  printf("done.\n");
+  fputs("done.\n", stdout);
 }
