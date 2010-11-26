@@ -23,6 +23,7 @@ int main( int argc, char** argv)
 
   game.mode = 0;
   game.x = 0;
+  game.status = MINUTE_STAT_MAIN;
 
   init_sdl( &screen);
   game.screen = screen;
@@ -32,8 +33,8 @@ int main( int argc, char** argv)
   while( !done){
     clear_screen( screen);
 
-    game.ctrl[0](&game);
-    game.draw[0](&game);
+    game.ctrl[game.status](&game);
+    game.draw[game.status](&game);
 
     while( SDL_PollEvent(&event)){
       switch( event.type){
