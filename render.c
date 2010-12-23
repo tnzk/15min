@@ -3,6 +3,10 @@
 #include <SDL_image.h>
 #include "render.h"
 
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    Commons functions
+  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
 void clear_screen( SDL_Surface* screen)
 {
 
@@ -27,6 +31,11 @@ void draw_box( int x, int y,
   dest.h = h;
   SDL_FillRect( screen, &dest, color ); 
 }
+
+
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    Renderers
+  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
 void sampledraw( Game15min* game)
 {

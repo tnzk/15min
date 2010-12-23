@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include "render.h"
 
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    Controllers
+  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
 void samplectrl(Game15min* game)
 {
     if(game->mode){
