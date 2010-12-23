@@ -1,6 +1,5 @@
 #include <SDL.h>
 #include <stdio.h>
-#include "15min.h"
 #include "render.h"
 
 void samplectrl(Game15min* game)
